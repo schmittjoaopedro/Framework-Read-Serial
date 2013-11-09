@@ -11,6 +11,7 @@ MyServo myServo1;
 MyServo myServo2;
 MyServo myServo3;
 MyServo myServo4;
+MyServo myServo5;
 
 void setup(){
 	Serial.begin(9600);
@@ -18,6 +19,7 @@ void setup(){
 	myServo2.setup(8);
 	myServo3.setup(9);
 	myServo4.setup(10);
+	myServo5.setup(11);
 }
 
 void loop(){
@@ -35,6 +37,9 @@ void loop(){
 		break;
 		case 10:
 			myServo4.move(readData);
+		break;
+		case 11:
+			myServo5.move(readData);
 		break;
 	}
 	delay(500);

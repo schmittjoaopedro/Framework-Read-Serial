@@ -104,7 +104,6 @@ void Controller::execute(String message) {
    for(int i = 0; i <= arraySize; i++) {
 
    		char type = data[i].charAt(0);
-   		Serial.println(data[i]);
    		if(type == 'D') {
    			executeDigitalPin(data[i]);
    		} 
@@ -119,6 +118,9 @@ void Controller::execute(String message) {
    		}
    		if(type == 'L') {
    			loggerPositions();
+   		}
+   		if(type == 'R') {
+   			this->util.reset();
    		}
    }
 
@@ -164,11 +166,11 @@ void Controller::executeDigitalPin(String data) {
 		digitalWrite(finalPin, LOW);
 	} else if(value == "READ") {
 		int read = digitalRead(finalPin);
-		String response = "Digital ";
+		String response = "D-";
 		response += String(finalPin);
 		response += ":";
 		response += String(read);
-		response += ";";
+		response += ",";
 		Serial.println(response);
 	}
 }
@@ -205,11 +207,11 @@ void Controller::executeServoPin(String data) {
 	int angulation = value.toInt();
 	
 	this->servos[finalPin].write(angulation);
-	String response = "S ";
+	String response = "S-";
 	response += String(finalPin);
 	response += ":";
 	response += String(angulation);
-	response += ";";
+	response += ",";
 	Serial.println(response);
 }
 
@@ -288,11 +290,11 @@ void Controller::executeAnalogPin(String data) {
 
 	if(this->analog[finalPin] == "READ") {
 		int read = analogRead(finalPin);
-		String response = "analog ";
+		String response = "A-";
 		response += String(finalPin);
 		response += ":";
 		response += String(read);
-		response += ";";
+		response += ",";
 		Serial.println(response);
 	} else if(this->analog[finalPin] == "WRITE") {
 		//analogWrite(finalPin, value.toInt());

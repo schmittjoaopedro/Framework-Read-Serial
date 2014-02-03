@@ -9,6 +9,7 @@ class Controller {
 
 private:
 	String data;
+	Utilities util;
 	String mapped;
 	//Servo servos[50];
 

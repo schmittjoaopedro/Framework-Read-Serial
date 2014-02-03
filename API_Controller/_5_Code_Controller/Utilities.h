@@ -12,6 +12,7 @@ public:
 
     //Methods...
 	String readString();
+	void reset();
 
 //Private members...
 private:

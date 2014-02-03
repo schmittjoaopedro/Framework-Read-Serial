@@ -11,7 +11,7 @@ import java.util.Scanner;
  */
 public class Teste {
     
-    public static void main(String... args){
+    public void main(String... args){
         
         WireComponents wiredComponents = null;
         
@@ -36,7 +36,6 @@ public class Teste {
         
         wiredComponents.addControlled(servo1);
         wiredComponents.addControlled(digital1);
-        
         
         
         

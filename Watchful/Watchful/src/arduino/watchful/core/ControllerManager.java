@@ -26,7 +26,7 @@ public class ControllerManager extends AbstractController {
         StringBuilder definitions = new StringBuilder();
         for(Object c : this.controlleds) {
             IControlled ctrl = (IControlled) c;
-            definitions.append(this.translateData(ctrl.definition()));
+            definitions.append(ctrl.definition());
         }
         this.getSession().write(definitions.toString());
     }
@@ -36,20 +36,29 @@ public class ControllerManager extends AbstractController {
         StringBuilder definitions = new StringBuilder();
         for(Object c : this.controlleds) {
             IControlled ctrl = (IControlled) c;
-            definitions.append(this.translateData(ctrl.execute()));
+            definitions.append(ctrl.execute());
         }
-        System.out.println(definitions.toString());
         this.getSession().write(definitions.toString());
         try {
-            Thread.sleep(1000);
-            System.out.println(this.getSession().readMsg());
-            Thread.sleep(1000);
-            System.out.println("\n");
-        }catch(Exception er){
+            Thread.sleep(500);
+        }catch(InterruptedException er){
             System.out.println(er.getMessage());
         }
     }
+    
 
+    @Override
+    public void analiser() throws DefinitionException, SerialPortException {
+        try {
+            for(Object c : this.controlleds) {
+            IControlled ctrl = (IControlled) c;
+            ctrl.analiser(this.getSession().readMsg());
+        }
+        }catch(SerialPortException er){
+            System.out.println(er.getMessage());
+        }
+    }
+    
     @Override
     public List controlleds() {
         return this.controlleds;

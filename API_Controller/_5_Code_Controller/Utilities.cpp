@@ -21,3 +21,8 @@ Utilities::Utilities()
 String Utilities::readString() {
 	return Serial.readStringUntil('\n');
 };
+
+void Utilities::reset() {
+	Serial.println("Reseting..");
+	asm volatile(" jmp 0");
+}

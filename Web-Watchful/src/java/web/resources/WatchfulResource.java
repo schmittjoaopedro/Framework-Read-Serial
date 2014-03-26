@@ -126,4 +126,11 @@ public class WatchfulResource {
         
         return response;
     }
+    
+    @GET
+    @Path("users")
+    @Produces("text/plain")
+    public String getUser(){
+        return "teste";
+    }
 }

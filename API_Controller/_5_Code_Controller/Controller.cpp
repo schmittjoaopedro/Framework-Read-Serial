@@ -186,14 +186,15 @@ void Controller::fillServoPin(String data) {
 	int endPin = data.indexOf(':');
 	String pin = data.substring(initPin, endPin);
 	int finalPin = pin.toInt();
+	int position = finalPin - 22;
 	String angle = data.substring(endPin + 1, data.length());
 	int initialAngulation = angle.toInt();
 	this->mapped += "SERVO ";
 	this->mapped += finalPin;
 	this->mapped += ": A(";
 	this->mapped += angle;
-	this->servos[finalPin].attach(finalPin);
-	this->servos[finalPin].write(initialAngulation);
+	this->servos[position].attach(finalPin);
+	this->servos[position].write(initialAngulation);
 	this->mapped += ");\n";
 
 }
@@ -203,10 +204,10 @@ void Controller::executeServoPin(String data) {
 	int endPin = data.indexOf(':');
 	String pin = data.substring(initPin, endPin);
 	int finalPin = pin.toInt();
+	int position = finalPin - 22;
 	String value = data.substring(endPin + 1, data.length());
 	int angulation = value.toInt();
-	
-	this->servos[finalPin].write(angulation);
+	this->servos[position].write(angulation);
 	String response = "S-";
 	response += String(finalPin);
 	response += ":";

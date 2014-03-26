@@ -86,7 +86,7 @@ public:
 	//Variables
 		bool defined;
 		//25 servos in maximum
-		Servo servos[25];
+		Servo servos[20];
 		String PWM[25];
 		String analog[25];
 
